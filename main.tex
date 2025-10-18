@@ -1,0 +1,86 @@
+% === 親ファイル（ここをコンパイル）========================================
+% クラスは自作の styles/thesis.cls を使用（jsbookベース）
+\documentclass[twoside,openright]{styles/thesis}
+
+% --- 参考文献（biblatex + biber） -----------------------------------------
+% ・backend=biber: コンパイル時に biber を使う
+% ・style/citestyle は styles/ 内の自作スタイル（thesis-numeric.bbx）を指定
+% ・sorting=none: 引用順
+% ・doi, isbn は表示しない。URLは表示する設定
+\usepackage[
+  backend=biber,
+  style=styles/thesis-numeric,
+  citestyle=styles/thesis-cite,
+  sorting=none, doi=false,
+  isbn=false, url=true
+]{biblatex}
+% 参考文献データベース（.bib）の場所
+\addbibresource{backmatter/references.bib}
+
+% --- できるだけ最後に hyperref を読む（リンクの設定）-------------
+% dvipdfmx ドライバを使う。リンク色は黒（印刷向け）
+\usepackage[
+  dvipdfmx,bookmarksnumbered=true,
+  colorlinks=true,linkcolor=black,
+  citecolor=black,urlcolor=black
+]{hyperref}
+
+% --- 共通マクロやコマンドを読み込み ---------------------------------------
+% 自作コマンドがあればここにまとめる
+\input{preamble/macros.tex}
+
+% ========================= ここから本文 ================================
+\begin{document}
+
+% --- 前付け ----------------------------
+\frontmatter
+% 論文表紙、中扉、英文Abstractは教務から配布されるものを差し込む。
+\tableofcontents % 目次
+
+% --- 本文：アラビア数字のページ番号をここから振る -------------------------------
+\mainmatter
+% ========== 第1章 ======================================================
+% 章タイトルは親側で管理。本文は子ファイル（chapters/chap1.tex）で編集
+\chapter{Introduction} % {}内、章タイトル
+\subfile{chapters/chap1}
+
+% ========== 第2章 ======================================================
+\chapter{Methods}\label{chap:methods} % labelをつけておくと本文中で参照できる。
+\subfile{chapters/chap2}
+
+% ========== 第3章 ======================================================
+\chapter{Results}
+\subfile{chapters/chap3}
+
+% ========== 第4章 ======================================================
+\chapter{Discussion}
+\subfile{chapters/chap4}
+
+% ========== 第5章 ======================================================
+\chapter{Conclusion}
+\subfile{chapters/chap5}
+
+
+% --- 付録 --------------------------------------------------------------
+% \appendix 以降は付録扱い（章番号が A, B, C... になる）
+\appendix
+\chapter{Additional Figures1}
+\subfile{backmatter/appendixA} % ファイルの場所は backmatter/ だが、ページスタイル的に \mainmatter に記述
+\chapter{Additional Figures2}
+\subfile{backmatter/appendixB}
+
+% --- 後付け ------------------------------------------------------------
+\backmatter
+% \nocite{*} % 試しに参考文献表示したい時のみコメントアウト外す
+
+% 目次に「参考文献」という項目を手で足す。（biblatex は自動で目次に入れない設定のため）
+\addcontentsline{toc}{chapter}{参考文献} 
+
+% 実際の参考文献を出力。見出しの和訳もここで指定
+\printbibliography[title={参考文献}]
+
+
+% 謝辞を差し込み（backmatter/acknowledgment.tex）
+\input{backmatter/acknowledgment}
+
+\end{document}

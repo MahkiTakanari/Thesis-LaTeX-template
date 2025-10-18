@@ -1,0 +1,110 @@
+@Comment{
+基本は、読んだ論文サイトから{cite}→Export citation to BibTex などで出力したテキストをそのまま貼れば良いです。
+
+代表的なエントリの型と必須フィールド
+•	論文：<at>article
+    必須：author, title, journal, year（推奨：volume, number, pages, doi/url）
+•	国際会議（査読あり）・予稿集：<at>inproceedings
+    必須：author, title, booktitle, year（推奨：pages, doi/url, organization, address）
+•	章（書籍内の1章）：<at>incollection
+    必須：author, title, booktitle, publisher, year（推奨：editor, pages）
+•	書籍：<at>book
+    必須：author(or editor), title, publisher, year
+•	プレプリント：<at>online or <at>article + eprint 系
+    例（arXiv）：
+    <at>online{foo2025,
+      author = {Foo, Bar},
+      title  = {Title...},
+      year   = {2025},
+      eprint = {2501.01234},
+      eprinttype = {arXiv},
+      url    = {https://arxiv.org/abs/2501.01234},
+      urldate= {2025-10-18}
+    }
+}
+
+@article{cite:Francis2023,
+  title={Evaluation of a robotic palpation sensor system for prostate cancer screening on silicone elastomers and prostate phantoms},
+  author={Francis CHIKWETO and Takeshi OKUYAMA and Mami TANAKA},
+  journal={Journal of Advanced Mechanical Design, Systems, and Manufacturing},
+  volume={17},
+  number={2},
+  pages={JAMDSM0021-JAMDSM0021},
+  year={2023},
+  doi={10.1299/jamdsm.2023jamdsm0021}
+}
+
+@INPROCEEDINGS{cite:Okuyama2022,
+  author={Okuyama, Takeshi and Sugimoto, Tomoki and Tanaka, Mami},
+  booktitle={2022 IEEE International Conference on Systems, Man, and Cybernetics (SMC)}, 
+  title={Mechanical modeling of a ring-type fingertip force sensor}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1718-1723},
+  keywords={Training;Force measurement;Sensitivity;Magnetic resonance imaging;Force;Fingers;Muscles;Fingertip force;Tendon;Tension;Ring-type sensor},
+  doi={10.1109/SMC53654.2022.9945291}}
+
+
+@inproceedings{cite:iip2025,
+  author    = {高成真輝，奥山武志，田中真美},
+  title     = {垂直及び水平振動刺激に対する指先の知覚とヤング率の関係に関する研究},
+  booktitle = {IIP2025講演論文集},
+  year      = {2025},
+  langid    = {japanese},
+}
+
+
+@article{cite:Lundstrom2018,
+  title   = {{Vibrotactile and thermal perception is not related to finger skin thickness}},
+  author  = {Lundström, Ronnie and Dahlqvist, Hanna and Hagberg, Mats and Nilsson, Tohr},
+  journal = {Clinical Neurophysiology Practice},
+  year    = {2018},
+  pages   = {33--39},
+  volume  = {3}
+}
+
+@inproceedings{cite:Takanari2024,
+  author    = {Takanari, Maaki and Okuyama, Takeshi and Pailler-Mattei, Cyril and Tanaka, Mami},
+  title     = {Study on the Relationship Between the Skin Properties of the Finger Pad and Vibration Perception},
+  booktitle = {Proceedings of the ICPE 2024},
+  year      = {2024},
+}
+
+@article{cite:Pfister2014,
+  author  = {Pfister, Marcel and Lue, Jaw-Chyng L. and Stefanini, Francisco R. and Falabella, Paulo and Dustin, Laurie and Koss, Michael J. and Humayun, Mark S.},
+  title   = {{Comparison of Reaction Response Time between Hand and Foot Controlled Devices in Simulated Microsurgical Testing}},
+  journal = {Journal of Ophthalmology},
+  year    = {2014},
+  volume  = {2014},
+  pages   = {769296},
+}
+
+@article{cite:Koo2016,
+  title   = {{A Guideline of Selecting and Reporting Intraclass Correlation Coefficients for Reliability Research}},
+  author  = {Koo, T. K. and Li, M. Y.},
+  journal = {Journal of Chiropractic Medicine},
+  year    = {2016},
+  pages   = {155--163},
+  volume  = {15},
+  number  = {2}
+}
+
+@article{cite:Bakdash2017,
+  author  = {Bakdash, John Z. and Marusich, Laura R.},
+  title   = {Repeated Measures Correlation},
+  journal = {Frontiers in Psychology},
+  year    = {2017},
+  volume  = {8},
+  pages   = {456},
+}
+
+@inproceedings{cite:iip2025,
+  author    = {高成真輝，奥山武志，田中真美},
+  title     = {垂直及び水平振動刺激に対する指先の知覚とヤング率の関係に関する研究},
+  booktitle = {IIP2025講演論文集},
+  year      = {2025},
+  langid    = {japanese},
+}
+
+

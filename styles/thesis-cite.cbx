@@ -1,0 +1,35 @@
+% !TeX root = ../main.tex
+% =====================================================================
+% styles/thesis-cite.cbx
+% 目的：
+%  - biblatex の "numeric-comp" をベースに、
+%    \cite を「上付きの数値引用（supercript）」にする。
+%  - 例： "... と報告されている¹ ²–⁴ 。"
+% 前提：
+%  - main.tex で citestyle=styles/thesis-cite を指定済み
+%    （style=styles/thesis-numeric と組み合わせ）
+% =====================================================================
+
+\ProvidesFile{thesis-cite.cbx}[2025/10/16 superscript numeric-comp]
+
+% -------------------------------------------------------
+% ベーススタイル：
+%  - numeric-comp = 数値引用・レンジ/圧縮（[2–4], [2,3]→[2–3]）
+%  - 角括弧やダッシュ（レンジ表記）はベースに従う
+% -------------------------------------------------------
+\RequireCitationStyle{numeric-comp}
+
+% -------------------------------------------------------
+% \cite を「上付き」にする定義
+%  - \mkbibsuperscript が、ぶら下げる上付きの体裁を与える
+%  - prenote/postnote（例：\cite[pp.~10–12]{...}）も動作
+% -------------------------------------------------------
+% 角括弧＋上付きのラッパを定義（中身全体を [ ... ] の上付きにする）
+\newcommand{\Thesis@supbrackets}[1]{\mkbibsuperscript{\mkbibbrackets{#1}}}
+\DeclareCiteCommand{\cite}[\Thesis@supbrackets]
+  {\usebibmacro{cite:init}\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\usebibmacro{cite:comp}}
+  {} % ← ここを空にする（重要：圧縮は cite:comp に任せる）
+  {\usebibmacro{cite:dump}\usebibmacro{postnote}}
+
+\endinput

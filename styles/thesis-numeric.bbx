@@ -1,0 +1,76 @@
+% styles/thesis-numeric.bbx
+\ProvidesFile{thesis-numeric.bbx}[2025/10/16 Thesis numeric style]
+\RequireBibliographyStyle{numeric} % ベースは標準numericを継承
+% 参考文献リストの番号の後ろにスペースを入れる
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}\hspace{0.5em}}
+
+% authorsの後の区切り文字を「.」から「: 」に変更
+\renewcommand*{\labelnamepunct}{\addcolon\space}
+
+% 論文名の後の区切り文字を「. 」から「, 」に変更
+\renewcommand*{\newunitpunct}{\addcomma\space}
+% 日本語エントリで太字を避ける
+\DeclareFieldFormat[japanese]{booktitle}{#1}
+\DeclareFieldFormat[japanese]{journaltitle}{#1}
+
+% yearを()で囲む
+\DeclareFieldFormat{parens}{#1}
+\DeclareFieldFormat{date}{\mkbibparens{#1}}
+
+% In.の削除
+\renewbibmacro*{in:}{}
+
+% タイトル、論文集名、雑誌名の引用符・イタリックを外す
+\DeclareFieldFormat[article,book,booklet,inbook,inproceedings,incollection,manual,mastersthesis,misc,phdthesis,proceedings,techreport,unpublished,online]{title}{#1}
+% \DeclareFieldFormat{journal}{\textbf{#1}}
+\DeclareFieldFormat{booktitle}{#1}
+\DeclareFieldFormat{journaltitle}{#1}
+
+% et al. を使わず全著者表示
+\ExecuteBibliographyOptions{
+  maxbibnames=999, minbibnames=1,
+  maxnames=999,    minnames=1,
+  maxcitenames=999,mincitenames=1
+}
+
+
+% yearとpageの表示順を入れ替え
+% yearの表示を削除
+\renewbibmacro*{journal+issuetitle}{%
+    \usebibmacro{journal}%
+    \setunit*{\addspace}%
+    \iffieldundef{series}
+        {}
+        {\newunit
+        \printfield{series}%
+        \setunit{\addspace}}%
+    \setunit{\addcomma\space}%
+    \usebibmacro{volume+number+eid}%
+    \setunit{\addspace}%
+    \usebibmacro{issue}%
+    \newunit}
+
+% note+pagesにissue+dateを追加し、yearの表示を追加
+\renewbibmacro*{note+pages}{%
+    \printfield{note}%
+    \setunit{\bibpagespunct}%
+    \printfield{pages}%
+    \setunit{\addspace}%
+    \usebibmacro{issue+date}%
+    \setunit{\addspace}% ここで区切りを変更
+}
+
+% bookとproceedingsでも同様の設定
+\renewbibmacro*{publisher+location+date}{%
+    \printlist{publisher}%
+    \setunit*{\addcomma\space}%
+    \printlist{location}%
+    \setunit{\addspace}%
+    \usebibmacro{date}%
+    \newunit}
+
+
+% visited onをaccessed onに変更
+\DeclareFieldFormat{urldate}{(accessed on #1)}
+
+\endinput

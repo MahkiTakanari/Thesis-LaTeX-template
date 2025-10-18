@@ -1,0 +1,44 @@
+% =====================================================================
+% preamble/macros.tex
+% 目的：
+%  - 図表・式などの参照コマンドを統一
+% 前提：
+%  - styles/thesis-packages.sty 側で graphicx / subfiles を読み込み済み
+%  - 本プロジェクトは dvipdfmx（.pdf/.png/.jpg の画像を推奨）
+% =====================================================================
+
+% ---------------- 参照系（Fig., Table, Eq. 等を統一） --------------------
+% 使い方： \figref{fig:setup}, \tabref{tab:params}, \eqnref{eq:newton}, \chapref{chap:results}, \secref{sec:methods}, \appref{app:hardware}
+% 出力例： "Fig. 1", "Table 2", "Eq. (3)", "3章", "2.3節", "付録A"
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\eqnref}[1]{式(\ref{#1})}
+\newcommand{\chapref}[1]{\ref{#1}章}
+\newcommand{\secref}[1]{\ref{#1}節}
+\newcommand{\appref}[1]{付録\ref{#1}}
+
+% ---------------- 画像パス設定（subfiles対応） -------------------------
+% \graphicspath + \subfix により、親(main.tex)でも子(chapX.tex)でも
+% 「figures/」配下を自動で探索します。
+% 例：\includegraphics{chap1/sample_fig.pdf} だけでOK。
+% 重要：
+%  - 図は figures/chapX/ に置く運用を推奨
+\graphicspath{{\subfix{figures/}}}
+
+% ---------------- よく使う書式（必要最小限の便利マクロ） --------------
+% ベクトル表記：\vect{x} → 太字 x
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% （任意）よく使う集合：\R, \N
+% \newcommand{\R}{\mathbb{R}}
+% \newcommand{\N}{\mathbb{N}}
+
+% ---------------- 執筆ルールTIPS（参照ラベル命名規約の提案） ----------
+% ラベルは種類ごとに接頭辞を付けると検索しやすい：
+%   図     : \label{fig:setup}
+%   表     : \label{tab:hyperparam}
+%   式     : \label{eq:snr}
+%   節/章  : \label{sec:methods}, \label{chap:results}
+% 参照例：
+%   \figref{fig:setup}に計測システムを示す．\tabref{tab:hyperparam}に計測結果をまとめる．
+% =====================================================================

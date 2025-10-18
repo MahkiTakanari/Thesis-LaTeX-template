@@ -1,0 +1,50 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{BibTeX出力方法}
+
+文献管理には，論文サイトから直接 BibTeX 形式で情報を取得する方法が便利である．
+多くの論文データベースでは「Cite」や「Export」などのメニューから BibTeX 形式で文献情報を出力できる．
+
+たとえば，\figref{fig:sciencedirect} に ScienceDirect，\figref{fig:ieee} に IEEE Xplore の例を示す．
+いずれの場合も，まず「Cite」または「Cite This」ボタンをクリックし，形式として「BibTeX」を選択する．
+表示された BibTeX テキストをコピーし，backmatter/references.bib ファイルに貼り付ければ準備完了である．
+BibTeX エントリは \verb|@article{...}| や \verb|@inproceedings{...}|のような構造になっており，著者名やタイトルなどの情報が自動的に整形される．
+
+\begin{figure}[tb]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{chap2/sciencedirect_cite.png}
+    \subcaption{Citeボタンの位置（ScienceDirect）}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{chap2/sciencedirect_bibtex.png}
+    \subcaption{BibTeX形式のDLボタン}
+  \end{minipage}
+  \caption{ScienceDirectにおけるBibTeX出力手順の例}
+  \label{fig:sciencedirect}
+\end{figure}
+
+\begin{figure}[tb]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{chap2/ieee_cite.png}
+    \subcaption{Citeボタンの位置（IEEE Xplore）}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{chap2/ieee_bibtex.png}
+    \subcaption{BibTeX形式の出力画面}
+  \end{minipage}
+  \caption{IEEE XploreにおけるBibTeX出力手順の例}
+  \label{fig:ieee}
+\end{figure}
+
+BibTeX ファイルを作成したら，LaTeX 本文で\verb|\cite{...}|をのようにキーを指定して引用できる．
+文献の並び順はテンプレートの設定により，本文中に登場した順に自動で番号が振られる．
+
+\end{document}

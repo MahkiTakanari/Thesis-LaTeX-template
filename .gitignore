@@ -1,0 +1,66 @@
+# ================== LaTeX 生成物（共通） ==================
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.run.xml
+*.bcf
+*.blg
+*.bbl          # ← biberが生成（基本は追跡しない想定）
+
+# 目次・リスト系（環境によって生成）
+*.lof
+*.lot
+*.loa
+*.lol
+*.thm
+
+# 索引／用語集／略語（使う場合のみ生成）
+*.idx
+*.ind
+*.ilg
+*.ist
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+
+# Beamer を使う可能性がある場合
+*.nav
+*.snm
+*.vrb
+
+# minted / Pygments を使う場合
+_minted*
+*.pyg
+
+# tikz externalize を使う場合
+tikzexternal/
+
+# ================== ビルド出力先 ==================
+# latexmk の .latexmkrc で out/ に吐く設計なので一括無視
+out/
+
+# 別名のビルドディレクトリを使う人向け
+build/
+
+# ================== OS / エディタごみ ==================
+.DS_Store
+Thumbs.db
+._*
+~$*
+*.swp
+*.swo
+
+# VS Code 等
+.vscode/
+.idea/
+
+# ================== ここから運用ポリシー ==================
+# 画像やソース（.tex/.bib/.sty/.cls/.cbx/.bbx 等）は追跡したいので無視しない
+#  → ここでは何も追加しない（.gitattributesで EOL を LF に固定済み）

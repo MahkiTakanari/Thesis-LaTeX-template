@@ -1,0 +1,38 @@
+# すべてのテキストをGit管理時に正規化（改行→LFへ）
+# ※ ワークツリー側は各OSの既定に戻されます（core.autocrlfと連動）
+* text=auto
+
+# ---- LaTeX系は常にLFに固定（Win混在でもブレない） ----
+*.tex text eol=lf
+*.sty text eol=lf
+*.cls text eol=lf
+*.cbx text eol=lf
+*.bbx text eol=lf
+*.bib text eol=lf
+*.md  text eol=lf
+*.txt text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.cfg  text eol=lf
+*.latexmkrc text eol=lf
+
+# ---- バイナリは改行変換しない（差分もバイナリ扱い） ----
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.zip  binary
+*.gz   binary
+*.rar  binary
+
+# （必要なら）TeXソースのマージ時にtex用ドライバを使う
+# 例：Gitに "merge=tex" を定義しておけば、\begin...\end の塊を安全寄りに扱える
+# *.tex merge=tex
+
+# （GitHub表示向け）拡張子をTeXとしてハイライトさせる例
+# *.sty linguist-language=TeX
+# *.cls linguist-language=TeX
+# *.cbx linguist-language=TeX
+# *.bbx linguist-language=TeX
